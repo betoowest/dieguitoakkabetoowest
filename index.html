@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Galería</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/lemon-milk');
+
+        /* Configuración global */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            background-image: url('fondo.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+            font-family: 'Lemon Milk', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 10px;
+            margin: 0;
+        }
+
+        /* Contenedor responsivo */
+        .contenedor {
+            width: 100%;
+            max-width: 800px; /* Un poco más ancho para que luzca mejor en PC */
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        /* Ajustes de imágenes */
+        .foto {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border: 1px solid #333;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* FILA SUPERIOR: Fecha/Bebé y Botón */
+        .seccion-superior {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .bloque-bebe {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .bloque-boton {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        /* Botón de música */
+        .boton-musica {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.1s ease;
+        }
+
+        .boton-musica:active {
+            transform: scale(0.93);
+        }
+
+        .boton-musica img {
+            width: 90px;
+            height: auto;
+        }
+
+        /* TEXTO REZO */
+        .texto-rezo {
+            text-align: center;
+            line-height: 1.6;
+            font-size: 14px;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        /* FILAS INTERMEDIAS RESPONSIVAS (Flex que cambia a columna en celular) */
+        .fila-medio {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .texto-derecha {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        /* FILA SPIDERMAN */
+        .fila-spiderman-contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .texto-izquierda {
+            align-self: flex-start;
+            font-size: 14px;
+            max-width: 80%;
+        }
+
+        .contenedor-foto-spiderman {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        /* FILA INFERIOR */
+        .fila-inferior {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Texto largo en Arial */
+        .texto-largo {
+            font-family: 'Arial', sans-serif;
+            font-size: 13px;
+            text-align: justify;
+            line-height: 1.5;
+            flex: 1;
+            opacity: 0.95;
+            text-transform: none;
+        }
+
+        /* TEXTO FINAL */
+        .texto-final {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        /* =======================================================
+           MEDIA QUERY: Cambios específicos para CELULARES 
+           ======================================================= */
+        @media (max-width: 600px) {
+            .contenedor {
+                padding: 15px;
+                gap: 25px;
+            }
+
+            /* Hacemos que las filas se vuelvan columnas verticales */
+            .fila-medio, .fila-inferior {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .texto-derecha {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .texto-izquierda {
+                align-self: center;
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .contenedor-foto-spiderman {
+                justify-content: center;
+            }
+
+            .texto-largo {
+                text-align: justify;
+                margin-top: 10px;
+            }
+
+            .foto {
+                max-width: 100%; /* Las fotos usan todo el ancho disponible del cel */
+            }
+
+            .boton-musica img {
+                width: 75px; /* Un poco más pequeño el botón en pantallas chicas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <!-- PARTE SUPERIOR -->
+        <div class="seccion-superior">
+            <div class="bloque-bebe">
+                <span>21 de marzo de 2010</span>
+                <img src="img1.jpg" alt="Bebé" class="foto">
+            </div>
+            
+            <div class="bloque-boton">
+                <span>PUSH ME</span>
+                <button class="boton-musica" onclick="reproducirMusica()">
+                    <img src="boton.png" alt="Reproducir">
+                </button>
+            </div>
+        </div>
+
+        <!-- REZO -->
+        <p class="texto-rezo">
+            Ángel de mi guarda, mi dulce compañía, no me desampares ni de noche ni de día. No me dejes solo, que me perdería, hasta que me pongas en paz y alegría con todos los santos; Jesús, José y María. Amén.
+        </p>
+
+        <!-- FILA MEDIO -->
+        <div class="fila-medio">
+            <img src="img2.jpg" alt="Chico Azul" class="foto">
+            <p class="texto-derecha">
+                Ser hermoso significa ser tú mismo.<br>
+                Tú no necesitas ser aceptado por otros.<br>
+                Tú necesitas aceptarte a ti mismo.
+            </p>
+        </div>
+
+        <!-- FILA SPIDERMAN -->
+        <div class="fila-spiderman-contenedor">
+            <p class="texto-izquierda">Ser libre, ¿no?, y todos ansiamos esa libertad.</p>
+            <div class="contenedor-foto-spiderman">
+                <img src="img3.jpg" alt="Spiderman" class="foto">
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR -->
+        <div class="fila-inferior">
+            <img src="img4.jpg" alt="Hombre Sombrero" class="foto">
+            <p class="texto-largo">
+                me gustaría decirte que no pienso en mi existencia todo el tiempo pero te estaría mintiendo soy un ser sensible por lo tanto todo me conmueve todo me toca y a todo lo siento a esto le podés agregar que me gusta mucho pensar a veces pienso en que me crearon con los ingredientes perfectos para sufrir y que se me complique vivir, pero lo vuelvo a meditar y recuerdo que esa idea es fruto de mi egocentrismo pesimista, no soy tan importante como para que tal cosa sea así pero sí, a veces la vida es demasiado para mí, lo admito, y muchas veces también es muy poco viste cuando el día está nublado, extremadamente nublado, mirás al cielo y se te encandilan los ojos? a mí me pasa eso con mi vida, a veces la miro y me deslumbra, y otras veces la miro y me incinera la vista
+            </p>
+        </div>
+
+        <!-- FRASE FINAL -->
+        <p class="texto-final">
+            Si no me lloran vivo, no me lloren si me muero<br>-.-
+        </p>
+
+    </div>
+
+    <audio id="miCancion" src="musica.mp3"></audio>
+
+    <script>
+        function reproducirMusica() {
+            var reproductor = document.getElementById('miCancion');
+            if (reproductor.paused) {
+                reproductor.play();
+            } else {
+                reproductor.pause();
+            }
+        }
+    </script>
+
+</body>
+</html>
